@@ -28,6 +28,17 @@ public class UserController {
         List<Tweet> tweets = tweetService.findAllByUser(user);
         model.addAttribute("tweetList", tweets);
         model.addAttribute("user", user);
+        
+        User loggedInUser = userService.getLoggedInUser();
+        List<User> following = loggedInUser.getFollowing();
+        boolean isFollowing = false;
+        for (User followedUser : following) {
+            if (followedUser.getUsername().equals(username)) {
+                isFollowing = true;
+            }
+        }
+        model.addAttribute("following", isFollowing);
+        
         return "user";
     }
     

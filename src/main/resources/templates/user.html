@@ -4,11 +4,22 @@
 	<body>
 		<header th:replace="fragments/layout :: header"></header>
 	    <div class="container">
-			<h2>Profile for <span th:text="${user.firstName}"></span> 
-			<span th:text="${user.lastName}"></span> - <span style="color: #00aced">
-			@<span th:text="${user.username}"></span></span></h2>
+	    	<div class="profile row">
+				<h2 class="col col-sm-10">Profile for <span th:text="${user.firstName}"></span>
+					<span th:text="${user.lastName}"></span> - <span style="color: #00aced">
+					@<span th:text="${user.username}"></span></span>
+				</h2>
+				<div class="col col-sm-2">
+					<form th:action="@{/follow/} + ${user.username}" th:if="${!following}" method="post">
+					    <button type="Submit" class="btn btn-md btn-success">Follow</button>
+					</form>
+					<form th:action="@{/unfollow/} + ${user.username}" th:if="${following}" method="post">
+					    <button type="Submit" class="btn btn-md btn-primary unfollow_btn">Following</button>
+					</form>
+				</div>  	
+	    	</div>
 			<h5>Joined <span th:text="${#dates.format(user.createdAt, 'MMMM dd, yyyy')}"></span></h5>
-			<h3>Tweets</h3>	
+			<h3>Tweets</h3>
 		    <div class="list-group" th:each="tweet:${tweetList}">
 		        <div class="list-group-item list-group-item-action">
 		            <div class="d-flex w-100 justify-content-between">

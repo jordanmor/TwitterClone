@@ -1,3 +1,13 @@
 .navbar-brand {
 	color: #00aced;
 }
+
+.profile {
+	display: flex;
+	align-items: center;
+}
+
+.profile h2 {
+	margin: 0;
+	padding: 0;
+}

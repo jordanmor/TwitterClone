@@ -13,10 +13,10 @@
 					<h5>Joined <span th:text="${#dates.format(user.createdAt, 'MMMM dd, yyyy')}"></span></h5>
 	    		</div>
 				<div class="profile-forms">
-					<form th:action="@{/follow/} + ${user.username}" th:if="${!following}" method="post">
+					<form th:action="@{/follow/} + ${user.username}" th:if="${!following && !isSelfPage}" method="post">
 					    <button type="Submit" class="btn btn-lg btn-success">Follow</button>
 					</form>
-					<form th:action="@{/unfollow/} + ${user.username}" th:if="${following}" method="post">
+					<form th:action="@{/unfollow/} + ${user.username}" th:if="${following && !isSelfPage}" method="post">
 					    <button type="Submit" class="btn btn-lg btn-primary unfollow_btn">Following</button>
 					</form>
 				</div>  	

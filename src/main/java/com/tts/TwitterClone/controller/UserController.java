@@ -39,6 +39,9 @@ public class UserController {
         }
         model.addAttribute("following", isFollowing);
         
+        boolean isSelfPage = loggedInUser.getUsername().equals(username);
+        model.addAttribute("isSelfPage", isSelfPage);
+        
         return "user";
     }
     
